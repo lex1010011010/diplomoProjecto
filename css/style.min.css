@@ -1011,7 +1011,6 @@ header .head .club-select .clubs-list p {
 }
 
 header .head .club-select .clubs-list ul {
-    display: none;
     width: 180px;
     position: absolute;
     top: 60px;
