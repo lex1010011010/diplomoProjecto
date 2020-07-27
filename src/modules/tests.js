@@ -1,5 +1,5 @@
 const test = () => {
-    console.log('tefffst')
+    // console.log('tefffst')
 }
 
 const image = document.querySelector('.image');
