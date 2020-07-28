@@ -1,4 +1,3 @@
-import test from './modules/tests';
 import choiceClub from './modules/choiceClub';
 import menuHandler from './modules/mobileMenu';
 import upScroll from './modules/upScroll';
@@ -8,6 +7,7 @@ import calcControl from './modules/calcControl';
 import sendForm from './modules/sendForm';
 import mainSlider from './modules/mainSlider';
 import serviceSlider from './modules/servicesSlider';
+import gallerySlider from './modules/gallerySlider';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,19 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
         sendForm();
         mainSlider();
         serviceSlider();
+        gallerySlider();
     } else {
         choiceClub();
         menuHandler();
         upScroll();
-        // giftControl();
         popupControl();
-        // calcControl();
         sendForm();
         mainSlider();
         serviceSlider();
+        gallerySlider();
     }
-
-
 })
 
 

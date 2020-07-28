@@ -9,8 +9,6 @@ const popupControl = () => {
     popupContainer.forEach(popup => {
         popup.addEventListener('click', (event) => {
             const target = event.target;
-            // console.log(target);
-
             if (target.classList.contains('close_icon') || target.classList.contains('overlay') || target.classList.contains('close-btn')) {
                 popup.style.display = "none";
             }
@@ -25,7 +23,6 @@ const popupControl = () => {
     callCallback.addEventListener('click', (event) => {
         popupCallback.style.display = "flex";
     })
-
 }
 
 export default popupControl;

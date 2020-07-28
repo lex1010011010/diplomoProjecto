@@ -11,9 +11,6 @@ const upScroll = () => {
             topScroll.style.display = "none";
         }
     })
-
-
 }
-
 export default upScroll;
 

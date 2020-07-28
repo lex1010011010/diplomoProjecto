@@ -71,8 +71,35 @@
 .gallery-slider .slide {
     position: absolute;
     opacity: 0;
+    transition: 0.3s;
 }
 
 .gallery-slider .slide.active {
+    opacity: 1;
+}
+
+
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 20px;
+}
+
+.slider-dots-item {
+    content: '';
+    display: flex;
+    height: 4px;
+    width: 22px;
+    background-color: #ffd11a;
+    margin: 0 5px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.slider-dots-item.active {
     opacity: 1;
 }

@@ -1,10 +1,10 @@
 
 const menuHandler = () => {
     const popupMenu = document.querySelector('.popup-menu'),
-          iconMenu = document.querySelector('.menu-button'),
-          closeMenu = document.querySelector('.close-menu-btn'),
-          listMenu = document.querySelector('.popup-menu ul'),
-          topMenu = document.querySelector('.top-menu');
+        iconMenu = document.querySelector('.menu-button'),
+        closeMenu = document.querySelector('.close-menu-btn'),
+        listMenu = document.querySelector('.popup-menu ul'),
+        topMenu = document.querySelector('.top-menu');
 
     //открываем меню
     iconMenu.addEventListener('click', (event) => {
@@ -19,11 +19,6 @@ const menuHandler = () => {
     listMenu.addEventListener('click', (event) => {
         popupMenu.style.display = "none";
     })
-
-    // popupMenu.addEventListener('click', (event) => {
-    //     const target = event.target;
-    //     console.log(target);
-    // })
 
     //фиксация бургера
     document.addEventListener('scroll', (event) => {
@@ -42,13 +37,10 @@ const menuHandler = () => {
     for (let item of scrollItems) {
         item.addEventListener('click', function (e) {
             e.preventDefault();
-
-            
             const blockID = item.getAttribute('href');
-            
             document.querySelector(blockID).scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+                behavior: 'smooth',
+                block: 'start'
             })
         })
     }
