@@ -1,14 +1,14 @@
-const choiseClub = () => {
+const choiceClub = () => {
     const clubsList = document.querySelector('.clubs-list'),
         clubsListItems = document.querySelector('.clubs-list ul');
 
     clubsList.addEventListener('click', (event) => {
-        clubsListItems.classList.toggle('display-none');
-        console.log(event.target);
+        const target = event.target;
+        if (target.matches('.clubs-list ul a') || target.closest('.clubs-list')) {
+            clubsListItems.classList.toggle('display-none');
+        }
     })
-
-
 }
 
-export default choiseClub;
+export default choiceClub;
 

@@ -1,3 +1,42 @@
 .display-none {
     display: none;
 }
+
+.services-slider,
+.gallery-slider {
+    position: relative;
+}
+
+.slide-arrow {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 35px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+}
+
+.slide-left {
+    left: -13px;
+}
+
+.slide-right {
+    right: -15px;
+}
+
+.slide-arrow:after {
+    content: '';
+    display: flex;
+    width: 35px;
+    min-width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    background: #ffd11a url('../images/arrow-left.png') center no-repeat;
+
+}
+
+.slide-right:after {
+    background-image: url('../images/arrow-right.png');
+
+}
