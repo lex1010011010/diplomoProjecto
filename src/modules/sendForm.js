@@ -45,7 +45,7 @@ const sendForm = () => {
 
     //валидация текстовых полей
     const validText = form => {
-        const inputText = form.querySelectorAll('input[type=text]');
+        const inputText = form.querySelectorAll('.js-textonly');
         let result = true;
         inputText.forEach(item => {
             const test = /[а-яА-ЯёЁ\s]/.test(item.value);
@@ -61,7 +61,7 @@ const sendForm = () => {
 
     //запрет ввода всего, кроме русских букв
     const denyText = form => {
-        const inputText = form.querySelectorAll('input[type=text]');
+        const inputText = form.querySelectorAll('.js-textonly');
         inputText.forEach(item => {
             item.addEventListener('input', () => {
                 item.value = item.value.replace(/[^а-яА-ЯёЁ\s]/, '');
