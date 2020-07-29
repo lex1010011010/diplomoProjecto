@@ -8,7 +8,7 @@ const sendForm = () => {
     <button class="btn close-btn">OK</button>`,
         loadMessage = 'Загрузка...',
         errorInput = 'Ошибка ввода',
-        confirmMessage = 'Необходимо подтверждение';
+        confirmMessage = 'Необходимо подтверждение, поставьте галочку!!!=))';
 
     const forms = document.querySelectorAll('form'),
         form1 = document.getElementById('form1'),
@@ -41,7 +41,7 @@ const sendForm = () => {
     };
 
     const statusMessage = document.createElement('div');
-    statusMessage.style.cssText = 'font-size: 1.5rem; color: white;';
+    statusMessage.style.cssText = 'font-size: 1.2rem; color: red;';
 
     //валидация текстовых полей
     const validText = form => {

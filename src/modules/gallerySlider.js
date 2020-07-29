@@ -1,102 +1,111 @@
+
 const gallerySlider = () => {
     const gallerySlider = document.querySelector('.gallery-slider'),
-        gallerySlide = gallerySlider.querySelectorAll('.slide'),
-        galleryLenght = gallerySlide.length,
-        sliderArrows = gallerySlider.querySelectorAll('.slide-arrow');
+        itemsSlider = gallerySlider.querySelectorAll('.slide'),
+        leftArrow = gallerySlider.querySelector('.slide-left'),
+        rightArrow = gallerySlider.querySelector('.slide-right'),
+        slideArrow = gallerySlider.querySelectorAll('.slide-arrow'),
+        lengthSlider = itemsSlider.length;
 
-    let activeSlide;
+    let activeSlide = 0,
+        sliderAutoplay;
 
-    const checkActiveslide = function () {
-        gallerySlide.forEach((slide, index) => {
-            if (slide.classList.contains('active')) {
-                activeSlide = index;
-            }
-        });
-    }
+    const sliderDots = () => {
 
-    const nextSlide = function (current, next) {
-        gallerySlide[current].classList.remove('active'); //index
-        sliderDots[current].classList.remove('active');
-        gallerySlide[next].classList.add('active');  //index + 1
-        sliderDots[next].classList.add('active');
-    }
-
-    const prevSlide = function (current, prev) {
-        gallerySlide[current].classList.remove('active');  //index
-        sliderDots[current].classList.remove('active');
-        gallerySlide[prev].classList.add('active'); // index-1
-        sliderDots[prev].classList.add('active');
-    }
-
-    const sliderAutoplay = function () {
-        checkActiveslide();
-        let i = activeSlide;
-
-        setTimeout(function slide() {
-            checkActiveslide();
-            if (i !== galleryLenght - 1) {
-                nextSlide(i, i + 1);
-                i++;
-            } else {
-                gallerySlide[i].classList.remove('active');
-                sliderDots[i].classList.remove('active');
-                i = 0;
-                gallerySlide[i].classList.add('active');
-                sliderDots[i].classList.add('active');
-            }
-            checkActiveslide();
-
-            setTimeout(slide, 3000);
-
-        }, 3000);
-    }
-    sliderAutoplay();
-
-    const dotsSlide = function () {
-        const dots = document.createElement('ul');
-        dots.classList.add('slider-dots');
-        gallerySlider.append(dots);
-
-        gallerySlide.forEach((slide, index) => {
+        const dotsList = document.createElement('ul');
+        dotsList.classList.add('slider-dots');
+        gallerySlider.append(dotsList);
+        itemsSlider.forEach(() => {
             const dotsItem = document.createElement('li');
             dotsItem.classList.add('slider-dots-item');
-            dots.append(dotsItem);
+            dotsList.append(dotsItem);
         });
     }
-    dotsSlide();
+    sliderDots();
 
-    const sliderDots = gallerySlider.querySelectorAll('.slider-dots-item')
-    sliderDots[0].classList.add('active');
+    const galleryDots = gallerySlider.querySelectorAll('.slider-dots-item');
+    galleryDots[0].classList.add('active');
 
-    sliderDots.forEach((dot, index) => {
-        dot.addEventListener('click', (event) => {
-            checkActiveslide();
-            gallerySlide[activeSlide].classList.remove('active');
-            sliderDots[activeSlide].classList.remove('active');
+    galleryDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            checkActiveSlide();
 
-            gallerySlide[index].classList.add('active');
-            sliderDots[index].classList.add('active');
+            itemsSlider[activeSlide].classList.remove('active');
+            galleryDots[activeSlide].classList.remove('active');
+            itemsSlider[index].classList.add('active');
+            galleryDots[index].classList.add('active');
         })
     });
 
-    sliderArrows.forEach(arrow => {
-        arrow.addEventListener('click', (event) => {
-            const target = event.target;
-            checkActiveslide();
-            if (target.classList.contains('slide-right') && activeSlide < galleryLenght - 1) {
-                nextSlide(activeSlide, activeSlide + 1);
-            } else if (target.classList.contains('slide-left') && activeSlide !== 0) {
-                prevSlide(activeSlide, activeSlide - 1);
-            } else if (target.classList.contains('slide-left') && activeSlide === 0) {
-                prevSlide(activeSlide, galleryLenght - 1);
-            } else if (target.classList.contains('slide-right') && activeSlide === galleryLenght - 1) {
-                nextSlide(activeSlide, 0);
+
+
+    sliderAutoplay = setInterval(function slide() {
+        nextSlide(activeSlide);
+    }, 3000);;
+
+    gallerySlider.addEventListener('mouseleave', () => {
+        sliderAutoplay = setInterval(function slide() {
+            nextSlide(activeSlide);
+        }, 3000);
+    })
+    gallerySlider.addEventListener('mouseenter', () => {
+        clearInterval(sliderAutoplay);
+    })
+
+
+    const checkActiveSlide = () => {
+        itemsSlider.forEach((item, index) => {
+
+            if (item.classList.contains('active')) {
+                activeSlide = index;
             }
+            galleryDots[index].classList.remove('active')
 
-            checkActiveslide();
+        });
 
+        if (activeSlide === lengthSlider - 1) {
+            galleryDots[0].classList.add('active')
+        } else {
+            galleryDots[activeSlide + 1].classList.add('active')
+        }
+
+    }
+
+    const nextSlide = () => {
+        checkActiveSlide();
+        if (activeSlide < lengthSlider - 1) {
+            itemsSlider[activeSlide].classList.toggle('active');
+            itemsSlider[activeSlide + 1].classList.toggle('active');
+        } else if (activeSlide === lengthSlider - 1) {
+            itemsSlider[activeSlide].classList.toggle('active');
+            itemsSlider[0].classList.toggle('active');
+        }
+    }
+
+    const prevSlide = () => {
+        checkActiveSlide();
+        if (activeSlide !== 0) {
+            itemsSlider[activeSlide].classList.toggle('active');
+            itemsSlider[activeSlide - 1].classList.toggle('active');
+        } else if (activeSlide === 0) {
+            itemsSlider[activeSlide].classList.toggle('active');
+            itemsSlider[lengthSlider - 1].classList.toggle('active');
+        }
+    }
+
+    slideArrow.forEach(arrow => {
+
+        arrow.addEventListener('click', () => {
+            if (arrow === leftArrow) {
+                prevSlide(activeSlide);
+            } else if (arrow === rightArrow) {
+                nextSlide(activeSlide);
+            }
         })
+
     });
+
 }
 
 export default gallerySlider;
+
