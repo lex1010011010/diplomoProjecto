@@ -69,6 +69,15 @@ const sendForm = () => {
         });
     };
 
+    const minPhone = (form) => {
+        const inputPhone = form.querySelector('input[type=tel]');
+        let length = inputPhone.value.length;
+        if (length < 18) { return false; } else { return true; }
+    };
+
+
+
+
     form1.addEventListener('submit', event => {
         event.preventDefault();
         form1.append(statusMessage);
@@ -80,7 +89,7 @@ const sendForm = () => {
             body[key] = val;
         });
         if (chbox.checked) {
-            if (validText(form1)) {
+            if (validText(form1) && minPhone(form1)) {
                 postData(body)
                     .then(response => {
                         if (response.status !== 200) {
@@ -116,7 +125,7 @@ const sendForm = () => {
             body[key] = val;
         });
         if (chbox.checked) {
-            if (validText(bannerForm)) {
+            if (validText(bannerForm) && minPhone(bannerForm)) {
                 postData(body)
                     .then(response => {
                         if (response.status !== 200) {
@@ -152,9 +161,13 @@ const sendForm = () => {
         formData.forEach((val, key) => {
             body[key] = val;
         });
-        console.log(body);
+
+
+
+
+
         if (chbox.checked) {
-            if (validText(cardOrder)) {
+            if (validText(cardOrder) && minPhone(cardOrder)) {
                 postData(body)
                     .then(response => {
                         if (response.status !== 200) {
@@ -190,7 +203,7 @@ const sendForm = () => {
             body[key] = val;
         });
 
-        if (validText(footerForm)) {
+        if (validText(footerForm) && minPhone(footerForm)) {
             postData(body)
                 .then(response => {
                     if (response.status !== 200) {
