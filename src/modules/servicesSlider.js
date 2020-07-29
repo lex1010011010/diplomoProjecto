@@ -11,7 +11,7 @@ const serviceSlider = () => {
     let buildSlider;
 
     const cloneStart = () => {
-        for (var i = 0; i <= sliderLenght - 1; i++) {
+        for (var i = 0; i <= 4; i++) {
             const clone = serviceSlide[i].cloneNode(true);
             clone.classList.add('clone' + i);
             sliderContent.append(clone);
@@ -20,39 +20,39 @@ const serviceSlider = () => {
 
 
     const cloneFinish = () => {
-        for (var i = sliderLenght - 1; i >= 0; i--) {
+        for (var i = sliderLenght - 1; i >= 5; i--) {
             const clone = serviceSlide[i].cloneNode(true);
             clone.classList.add('clone' + i);
             sliderContent.prepend(clone)
         }
     }
 
-
-    const removeStart = () => {
-        for (var i = 0; i <= sliderLenght - 1; i++) {
-            buildSlider[i].remove();
-        };
-    }
-    const removeFinish = () => {
-        for (var i = sliderLenght - 1; i >= 0; i--) {
-            buildSlider[i].remove();
-        };
-    }
-
     const sliderBuild = () => {
+        sliderContent.style.left = -1110 + 'px';
+
         cloneStart();
-        sliderContent.style.left = -2220 + 'px';
+        cloneFinish();
 
         buildSlider = serviceSlider.querySelectorAll('.slide');
 
-        buildSlider.forEach((slide, index) => {
+        buildSlider.forEach((slide) => {
             slide.style.minWidth = widthSlider / 5 - 18 + 'px';
         });
     }
 
+
     sliderBuild();
 
-
+    // const moveFirst = () => {
+    //     const moveSlide = buildSlider[0].cloneNode(true);
+    //     buildSlider.append(moveSlide);
+    //     buildSlider[0].remove();
+    // }
+    // const moveLast = () => {
+    //     const moveSlide = buildSlider[5].cloneNode(true);
+    //     sliderContent.prepend(moveSlide);
+    //     buildSlider[5].remove();
+    // }
 
 
 
@@ -68,22 +68,9 @@ const serviceSlider = () => {
             }
 
             current = Number(sliderContent.style.left.match(/-\d+/));
-            if (current === 0) {
-                // sliderLeft.classList.add('hidden')
-                console.log('делаем еще клонов');
-                cloneStart();
-            } else {
-                // sliderLeft.classList.remove('hidden')
-            }
 
-            if (current === -3330) {
-                // sliderRight.classList.add('hidden')
-                console.log('делаем еще клонов');
-                cloneFinish();
-                removeStart();
-            } else {
-                // sliderRight.classList.remove('hidden')
-            }
+
+
         })
     });
 
