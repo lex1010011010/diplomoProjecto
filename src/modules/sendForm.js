@@ -155,16 +155,14 @@ const sendForm = () => {
         cardOrder.append(statusMessage);
         statusMessage.textContent = loadMessage;
         const chbox = document.getElementById('card_check');
+        const totalPrice = document.getElementById('price-total').textContent;
         const formData = new FormData(cardOrder);
         const body = {};
         statusMessage.style.color = 'black';
         formData.forEach((val, key) => {
             body[key] = val;
         });
-
-
-
-
+        body['price'] = totalPrice;
 
         if (chbox.checked) {
             if (validText(cardOrder) && minPhone(cardOrder)) {
